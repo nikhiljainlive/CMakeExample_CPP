@@ -10,9 +10,9 @@ configure_file(PrinterConfig.h.in PrinterConfig.h)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-set(SOURCES_Main Main.cpp Printer/source/Printer.cpp Reader.cpp)
+set(SOURCES_Main Main.cpp Printer/source/Printer.cpp Reader/source/Reader.cpp)
 
-set(SOURCES_Runner Runner.cpp Printer/source/Printer.cpp Reader.cpp)
+set(SOURCES_Runner Runner.cpp Printer/source/Printer.cpp Reader/source/Reader.cpp)
 
 if(USE_LIB)
 	add_subdirectory(addition)
