@@ -10,9 +10,7 @@ configure_file(PrinterConfig.h.in PrinterConfig.h)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-set(SOURCES_Main Main.cpp Printer/source/Printer.cpp Reader/source/Reader.cpp)
-
-set(SOURCES_Runner Runner.cpp Printer/source/Printer.cpp Reader/source/Reader.cpp)
+set(SOURCES Printer/source/Printer.cpp Reader/source/Reader.cpp)
 
 if(USE_LIB)
 	add_subdirectory(addition)
@@ -24,11 +22,11 @@ set(INCLUDE_DIRS Printer/include Reader/include ${PROJECT_BINARY_BIN} ${EXTRA_IN
 
 include_directories(${INCLUDE_DIRS})
 
-add_executable(printer_exec ${SOURCES_Main})
+add_executable(printer_exec Main.cpp ${SOURCES})
 
 target_link_libraries(printer_exec PUBLIC ${EXTRA_LIBS})
 
-add_executable(runner_exec ${SOURCES_Runner})
+add_executable(runner_exec Runner.cpp ${SOURCES})
 
 install(TARGETS printer_exec DESTINATION bin)
 install(FILES "${PROJECT_BINARY_DIR}/PrinterConfig.h"
@@ -39,13 +37,13 @@ install(FILES "${PROJECT_BINARY_DIR}/PrinterConfig.h"
 enable_testing()
 
 # does the application run
-add_test(NAME Runs COMMAND printer_exec)
+add_test(NAME AppRunsOrNot COMMAND printer_exec)
 
 # does the regex usage message work?
-add_test(NAME Check COMMAND printer_exec)
-set_tests_properties(Check
+add_test(NAME CheckResult COMMAND printer_exec)
+set_tests_properties(CheckResult
   PROPERTIES PASS_REGULAR_EXPRESSION "The result is 25"
-  )
+)
 
 
 
