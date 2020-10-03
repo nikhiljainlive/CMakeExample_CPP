@@ -7,3 +7,6 @@ printer_exec
 runner_exec
 lib/liblib.a
 install_manifest.txt
+CTestTestfile.cmake
+DartConfiguration.tcl
+Testing/
